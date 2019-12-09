@@ -1,12 +1,12 @@
 <template>
   <div>
     <tab-bar>
-      <tab-bar-item link="/home" >
+      <tab-bar-item link="/home">
         <img slot="item_icon" src="~assets/img/tabbar/home.svg" alt="">
         <img slot="item_active_icon" src="~assets/img/tabbar/home_active.svg" alt="">
         <div slot="item_text">首页</div>
       </tab-bar-item>
-      <tab-bar-item link="/category" >
+      <tab-bar-item link="/category">
         <img slot="item_icon" src="~assets/img/tabbar/category.svg" alt="">
         <img slot="item_active_icon" src="~assets/img/tabbar/category_active.svg" alt="">
         <div slot="item_text">分类</div>
@@ -27,17 +27,21 @@
 </template>
 
 <script>
-  import TabBar from 'components/common/tabbar/TabBar'
-  import TabBarItem from 'components/common/tabbar/TabBarItem.vue'
+    import TabBar from 'components/common/tabbar/TabBar'
+    import TabBarItem from 'components/common/tabbar/TabBarItem.vue'
 
-  export default {
-    name: 'MainTabBar',
-    components: {TabBar, TabBarItem},
-    methods: {},
-    created () {
-      this.$router.push('/home')
+    export default {
+        name: 'MainTabBar',
+        components:
+            {
+                TabBar,
+                TabBarItem
+            },
+        methods: {},
+        created() {
+            this.$router.push('/home')
+        }
     }
-  }
 
 
 </script>
