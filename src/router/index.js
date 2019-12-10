@@ -4,8 +4,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 
-
-
 const home = () => import('views/home/home')
 const category = () => import('views/cagegory/category')
 const buycars = () => import('views/buycars/buycars')
