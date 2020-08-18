@@ -11,8 +11,10 @@
     <!--    推荐信息-->
     <recommend-view :recommends="recommends"/>
 
-    <feature-view />
+    <feature-view/>
 
+    <tab-control :titles="tabDatas"></tab-control>
+    <!-- <goods-list :goods=""/>-->
 
     <ul>
       <li>列表</li>
@@ -123,39 +125,66 @@
 
 <script>
     import NavBar from "components/common/navbar/NavBar"
-    import {getHomeMultidata} from 'network/home'
+    import TabControl from 'components/content/TabControl/TabControl'
+    import GoodsList from "components/content/goods/GoodsList";
+
+
     import HomeSwiper from "./childComps/HomeSwiper";
     import RecommendView from "./childComps/RecommendView";
     import FeatureView from "./childComps/FeatureView";
+
+
+    import {getHomeMultidata, getHomeGoods} from 'network/home';
+
 
     export default {
         name: "home",
         data() {
             return {
                 banners: [],
-                recommends: []
+                recommends: [],
+                tabDatas: [
+                    '流行', '新款', '精选'
+                ]
             }
         },
         components: {
+            GoodsList,
             NavBar,
+            TabControl,
+
             HomeSwiper,
             RecommendView,
             FeatureView
         }, created() {
-            getHomeMultidata().then(res => {
-                this.banners = res.data.banner.list
-                this.recommends = res.data.recommend.list
-                // console.log(res.data.banner.list)
-            })
+            this.getHomeMultidata()
+            this.getHomeGoods()
 
+        },
+        methods: {
+            getHomeMultidata() {
+                getHomeMultidata().then(res => {
+                    this.banners = res.data.banner.list
+                    this.recommends = res.data.recommend.list
+                })
+            },
+
+            getHomeGoods() {
+                let type = 'pop'
+                let page = 1
+                getHomeGoods().then(res => {
+                    console.log(res);
+                })
+            }
         }
     }
 </script>
 
 <style scoped>
-  #home{
+  #home {
     padding-top: 44px;
   }
+
   .home_nav {
     background-color: var(--color-tint);
     color: #ffffff;
